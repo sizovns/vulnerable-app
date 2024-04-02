@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  tomcat-app:
+    build: .
+    container_name: demo-tomcat-app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+      - ./tomcat/web.xml:/usr/local/tomcat/conf/web.xml
+      - ./tomcat/server.xml:/usr/local/tomcat/conf/server.xml

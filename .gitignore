@@ -1,0 +1,10 @@
+.idea/
+*.iml
+**/target/
+**/bin/
+*.sum
+.mvn/
+docker/alertmanager/data/
+docker/grafana/data/
+docker/influxdb/data/
+docker/prometheus/data/
