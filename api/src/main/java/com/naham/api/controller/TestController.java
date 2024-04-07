@@ -1,4 +1,4 @@
-package com.naham.api.demo.controller;
+package com.naham.api.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
