@@ -154,19 +154,20 @@
                prefix="localhost_access_log" suffix=".txt"
                pattern="%h %l %u %t &quot;%r&quot; %s %b" />
 
-        <Context docBase="/usr/local/tomcat/webapps/demo" path="/demo/admin">
+        <!--<Context docBase="/usr/local/tomcat/webapps/demo" path="/demo/admin">
           <SecurityConstraint>
             <web-resource-collection>
               <web-resource-name>Admin Pages</web-resource-name>
-              <url-pattern>/admin</url-pattern> <!-- Close access to /demo/admin -->
+              <url-pattern>/admin</url-pattern> &lt;!&ndash; Close access to /demo/admin &ndash;&gt;
             </web-resource-collection>
             <auth-constraint>
               <role-name>admin</role-name>
             </auth-constraint>
           </SecurityConstraint>
-        </Context>
+        </Context>-->
 
-        <Context docBase="/usr/local/tomcat/webapps/demo" path="/demo////admin"/>
+<!--        <Context docBase="/usr/local/tomcat/webapps/demo" path="/demo/admin" />-->
+<!--        <Context docBase="/usr/local/tomcat/webapps/demo" path="/demo/admin////admin" />-->
 
       </Host>
     </Engine>

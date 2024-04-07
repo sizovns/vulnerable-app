@@ -9,3 +9,10 @@ services:
       - ./tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
       - ./tomcat/web.xml:/usr/local/tomcat/conf/web.xml
       - ./tomcat/server.xml:/usr/local/tomcat/conf/server.xml
+  httpd:
+    image: httpd:2.4.49
+    container_name: demo-httpd
+    ports:
+      - "80:80"
+    volumes:
+      - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
