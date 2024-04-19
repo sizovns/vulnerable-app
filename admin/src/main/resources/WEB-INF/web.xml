@@ -9,12 +9,65 @@
         This is a simple web application with a source code organization based on the recommendations of the Application
         Developer's Guide.
     </description>
+
     <servlet>
-        <servlet-name>admin_servlet</servlet-name>
-        <servlet-class>com.naham.admin.servlet.AdminServlet</servlet-class>
+        <servlet-name>admin_login_servlet</servlet-name>
+        <servlet-class>com.naham.admin.servlet.AdminLoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>admin_servlet</servlet-name>
-        <url-pattern>/admin</url-pattern>
+        <servlet-name>admin_login_servlet</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>admin_users_servlet</servlet-name>
+        <servlet-class>com.naham.admin.servlet.AdminUsersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin_users_servlet</servlet-name>
+        <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>admin_configuration_servlet</servlet-name>
+        <servlet-class>com.naham.admin.servlet.AdminConfigurationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin_configuration_servlet</servlet-name>
+        <url-pattern>/configuration</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>admin_data_servlet</servlet-name>
+        <servlet-class>com.naham.admin.servlet.AdminDataServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin_data_servlet</servlet-name>
+        <url-pattern>/data</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>admin_help_servlet</servlet-name>
+        <servlet-class>com.naham.admin.servlet.AdminHelpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin_help_servlet</servlet-name>
+        <url-pattern>/help</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>admin_password_servlet</servlet-name>
+        <servlet-class>com.naham.admin.servlet.AdminPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin_password_servlet</servlet-name>
+        <url-pattern>/password</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

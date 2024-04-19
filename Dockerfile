@@ -16,6 +16,10 @@ RUN mvn clean package -DskipTests
 #
 FROM tomcat:jre17-temurin-jammy
 
+RUN chown www-data:www-data -R /usr/local/tomcat
+
+USER www-data
+
 COPY --from=build /app/api/target/api.war /usr/local/tomcat/webapps/.
 COPY --from=build /app/admin/target/admin.war /usr/local/tomcat/webapps/.
 EXPOSE 8080
