@@ -13,6 +13,7 @@ public class AdminPasswordServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
+        resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
         try (PrintWriter pw = resp.getWriter()) {
             pw.println("""
                     <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
