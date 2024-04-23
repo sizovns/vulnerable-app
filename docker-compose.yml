@@ -9,6 +9,10 @@ services:
       - ./tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
       - ./tomcat/web.xml:/usr/local/tomcat/conf/web.xml
       - ./tomcat/server.xml:/usr/local/tomcat/conf/server.xml
+    depends_on:
+      users_db:
+        condition: service_healthy
+
   httpd:
     image: httpd:2.4.49
     container_name: demo-httpd
@@ -16,3 +20,20 @@ services:
       - "80:80"
     volumes:
       - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+
+  users_db:
+    container_name: users_db
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: myBestSecuredPassword!
+      POSTGRES_USER: admin
+      POSTGRES_DB: users
+      ACCEPT_EULA: "Y"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
