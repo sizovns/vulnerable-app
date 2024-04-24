@@ -3,8 +3,7 @@ package com.naham.api.model.dto.response;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -12,9 +11,11 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserInfoResponse {
+public class CardResponse {
     long id;
-    String username;
-    boolean enabled;
-    Set<RoleResponse> roles = new HashSet<>();
+    String name;
+    String number;
+    String holder;
+    String expDate;
+    String cvc;
 }

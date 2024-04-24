@@ -12,5 +12,7 @@
 
 * You can auth from admin app creds
 * JWT token is crackable by jwt-tool and common list
-* `CreateUserRequest` - give possibility to create a new admin with MassAssignment
+* `CreateUserRequest` - give possibility to create a new admin with MassAssignment `curl -X POST -d '{"username": "test1", "password": "test", "admin": true}'`
 * Added `/actuator` for future secondary context findings
+* Possible to BOLA on cards `/cards` PUT request 
+* Excessive Data Exposure on DELETE request `/cards`
