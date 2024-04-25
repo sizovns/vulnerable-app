@@ -44,9 +44,6 @@ public class AdminConfigurationServlet extends HttpServlet {
                 while ((line = reader.readLine()) != null) {
                     pw.println(line + "<br>");
                 }
-                if (fileName.contains("..") || fileName.contains("/") || fileName.contains("%2e")) {
-                    pw.println("<h3>You find flag FLAG{lFi_VulN}</h3>");
-                }
                 pw.println("</body></html>");
             } catch (IOException e) {
                 pw.println("Error reading file: " + e.getMessage());

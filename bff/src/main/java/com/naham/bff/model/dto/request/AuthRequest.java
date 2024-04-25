@@ -1,0 +1,20 @@
+package com.naham.bff.model.dto.request;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+@Getter
+@Setter
+@ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
+public class AuthRequest {
+    @NotBlank
+    String username;
+
+    @NotBlank
+    String password;
+}
+

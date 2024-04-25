@@ -1,0 +1,43 @@
+#
+# Build stage
+#
+FROM maven:3.8.4-openjdk-17-slim AS build
+
+WORKDIR /app
+
+RUN mkdir -p api/src
+RUN mkdir -p admin/src
+RUN mkdir -p bff/src
+
+COPY pom.xml .
+COPY api/src ./api/src
+COPY api/pom.xml ./api/pom.xml
+COPY admin/src ./admin/src
+COPY admin/pom.xml ./admin/pom.xml
+COPY bff/src ./bff/src
+COPY bff/pom.xml ./bff/pom.xml
+
+RUN mvn clean package -DskipTests
+
+
+#
+# Build spring boot image
+#
+
+FROM openjdk:17.0.2-jdk-slim-bullseye
+
+ENV APP_NAME=bff
+ENV APP_USER app
+ENV APP_GROUP app
+ENV APP_DIR /opt/app
+ENV APP_JAVA_OPTS=
+ENV APP_JAVA_EXT=
+
+RUN useradd -d ${APP_DIR} -s /sbin/nologin ${APP_USER}
+COPY --from=build /app/${APP_NAME}/target/${APP_NAME}.jar ${APP_DIR}/${APP_NAME}.jar
+RUN chown -R ${APP_USER}:${APP_GROUP} ${APP_DIR}
+
+USER ${APP_USER}
+WORKDIR ${APP_DIR}/
+
+CMD java ${APP_JAVA_OPTS} ${APP_JAVA_EXT} -jar ${APP_NAME}.jar

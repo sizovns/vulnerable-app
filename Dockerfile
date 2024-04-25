@@ -5,9 +5,17 @@ FROM maven:3.8.4-openjdk-17-slim AS build
 
 WORKDIR /app
 
+RUN mkdir -p api/src
+RUN mkdir -p admin/src
+RUN mkdir -p bff/src
+
 COPY pom.xml .
-COPY api/ ./api
-COPY admin/ ./admin
+COPY api/src ./api/src
+COPY api/pom.xml ./api/pom.xml
+COPY admin/src ./admin/src
+COPY admin/pom.xml ./admin/pom.xml
+COPY bff/src ./bff/src
+COPY bff/pom.xml ./bff/pom.xml
 
 RUN mvn clean package -DskipTests
 

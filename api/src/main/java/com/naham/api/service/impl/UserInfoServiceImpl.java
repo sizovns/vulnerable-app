@@ -4,6 +4,7 @@ import com.naham.api.exception.DaoException;
 import com.naham.api.mapper.UserInfoMapper;
 import com.naham.api.model.dto.request.CreateUserRequest;
 import com.naham.api.model.dto.response.UserInfoResponse;
+import com.naham.api.model.dto.response.UserSystemInfoResponse;
 import com.naham.api.model.entity.UserInfo;
 import com.naham.api.repository.RoleRepository;
 import com.naham.api.repository.UserInfoRepository;
@@ -60,5 +61,17 @@ public class UserInfoServiceImpl implements UserInfoService {
                 .stream()
                 .map(mapper::mapUserInfoResponse)
                 .toList();
+    }
+
+    @Override
+    public UserSystemInfoResponse getUserSystemInfoById(long userId) {
+        UserInfo userInfo = repository.getReferenceById(userId);
+        return mapper.mapUserSystemInfoResponse(userInfo);
+    }
+
+    @Override
+    public UserSystemInfoResponse getUserSystemInfoByUsername(String username) {
+        UserInfo userInfo = repository.findByUsername(username).orElseThrow(IllegalArgumentException::new);
+        return mapper.mapUserSystemInfoResponse(userInfo);
     }
 }

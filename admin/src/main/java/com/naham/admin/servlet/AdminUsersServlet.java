@@ -20,7 +20,6 @@ public class AdminUsersServlet extends HttpServlet {
             pw.println("<tr><th>Username</th><th>Password</th></tr>");
             pw.println("<tr><td>api_admin</td><td>M7z£19W=6f[/</td></tr>");
             pw.println("</table>");
-            pw.println("<h3>You find flag FLAG{P4TH_tr4V3rs4L}</h3>");
             pw.println("</body></html>");
         }
     }

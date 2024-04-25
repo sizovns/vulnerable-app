@@ -20,6 +20,7 @@
     <modules>
         <module>admin</module>
         <module>api</module>
+        <module>bff</module>
     </modules>
 
     <properties>

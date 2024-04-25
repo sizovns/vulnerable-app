@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  tomcat-app:
+  tomcat_app:
     build: .
     container_name: demo-tomcat-app
     ports:
@@ -11,6 +11,23 @@ services:
       - ./tomcat/server.xml:/usr/local/tomcat/conf/server.xml
     depends_on:
       users_db:
+        condition: service_healthy
+
+  spring_boot_app:
+    build:
+      dockerfile: Dockerfile_boot_app
+      context: .
+    container_name: bff-boot-app
+    environment:
+      - API=demo-tomcat-app
+      - MONGO_HOST=mongo_db
+      - MY_LOGGING=INFO
+    ports:
+      - "8085:8085"
+    depends_on:
+      users_db:
+        condition: service_healthy
+      mongo_db:
         condition: service_healthy
 
   httpd:
@@ -33,6 +50,17 @@ services:
       ACCEPT_EULA: "Y"
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongo_db:
+    image: mongo:6-jammy
+    container_name: mongo_db
+    ports:
+      - '27017:27017'
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/shop --quiet
       interval: 10s
       timeout: 5s
       retries: 5

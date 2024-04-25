@@ -33,7 +33,7 @@ public class CardController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Long userId = ((Principal) authentication.getPrincipal()).getId();
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.getCardsByUser(userId));
+        return ResponseEntity.status(HttpStatus.OK).body(service.getCardsByUser(userId));
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)

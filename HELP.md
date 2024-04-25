@@ -16,3 +16,14 @@
 * Added `/actuator` for future secondary context findings
 * Possible to BOLA on cards `/cards` PUT request 
 * Excessive Data Exposure on DELETE request `/cards`
+
+### Tips for bff app
+
+* IDOR on orders `localhost:8085/bff/orders/{orderId}`
+* Path traversal for get all users from bff to api - `localhost:8085/bff/cards?cardId=../../../../system/all/users` or `localhost:8085/bff/cards?cardId=../../../../actuator`
+
+
+## TODO
+Test functionality (some methods fails)
+Create some FrontEnd for bff.
+Actuator on api should be closed under httpd.
