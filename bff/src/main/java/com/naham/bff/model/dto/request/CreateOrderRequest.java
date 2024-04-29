@@ -10,6 +10,6 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateOrderRequest {
-    long bucketId;
+    String bucketId;
     long cardId;
 }

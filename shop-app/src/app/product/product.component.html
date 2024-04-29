@@ -1,0 +1,19 @@
+<div class="container" *ngIf="product; else productNotFound">
+  <header class="jumbotron">
+    <h3>
+      <strong>{{ product.name }}</strong>
+    </h3>
+    <p>
+      <strong>id:</strong>
+      {{ product.id }}
+    </p>
+    <strong>Price:</strong>
+    <p>{{ product.price }}</p>
+    <img [src]="product.imageUrl" alt="{{ product.name }}" style="width: 100px; height: auto;"><br/>
+    <button class="btn btn-primary btn-block" (click)="onButtonClicked()">Add to Basket</button>
+  </header>
+</div>
+
+<ng-template #productNotFound>
+    Product Not Found
+  </ng-template>

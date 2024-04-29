@@ -29,6 +29,6 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Long userId = ((Principal) authentication.getPrincipal()).getId();
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(userInfoService.getUserInfoById(userId));
+        return ResponseEntity.status(HttpStatus.OK).body(userInfoService.getUserInfoById(userId));
     }
 }

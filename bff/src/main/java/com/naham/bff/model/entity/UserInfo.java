@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 
 @Getter
@@ -15,7 +15,7 @@ import org.springframework.data.annotation.Id;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserInfo {
-    @Id
+    @MongoId
     long id;
     String username;
 }

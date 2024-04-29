@@ -8,3 +8,6 @@ docker/alertmanager/data/
 docker/grafana/data/
 docker/influxdb/data/
 docker/prometheus/data/
+node_modules/**
+**/.angular/**
+**/.vscode/**

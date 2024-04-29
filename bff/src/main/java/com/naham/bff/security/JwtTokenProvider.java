@@ -1,6 +1,12 @@
 package com.naham.bff.security;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +15,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 @Slf4j
@@ -30,10 +38,16 @@ public class JwtTokenProvider {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expiryLengthInMilliseconds);
 
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("username", principal.getUsername());
+        claims.put("id", principal.getId());
+        claims.put("roles", principal.getAuthorities());
+
         return Jwts.builder()
                 .setSubject(Long.toString(principal.getId()))
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
+                .addClaims(claims)
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }

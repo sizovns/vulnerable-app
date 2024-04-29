@@ -1,11 +1,13 @@
 package com.naham.bff.model.dto.request;
 
-import jakarta.validation.constraints.Size;
-import lombok.*;
+import jakarta.validation.constraints.Positive;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -14,6 +16,8 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BucketRequest {
-    @Size(min = 1, max = 30)
-    Map<Long, Integer> productMap = new HashMap<>();
+    @Positive
+    Long productId;
+    @Positive
+    Integer count;
 }

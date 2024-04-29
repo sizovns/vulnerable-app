@@ -18,6 +18,6 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BucketResponse {
-    long id;
+    String id;
     Map<ProductResponse, Long> products = new HashMap<>();
 }

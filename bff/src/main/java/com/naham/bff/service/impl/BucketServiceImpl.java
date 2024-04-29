@@ -33,22 +33,23 @@ public class BucketServiceImpl implements BucketService {
         if (bucket == null) {
             bucket = createBucketForUser(userId);
         }
-        for (Long productId : request.getProductMap().keySet()) {
-            Optional<Product> product = productRepository.findById(productId);
-            if (product.isEmpty()) {
-                continue;
-            }
-            Integer count = request.getProductMap().get(productId);
-            for (int i = 0; i < count; i++) {
-                bucket.getProducts().add(product.get());
-            }
+        Optional<Product> product = productRepository.findById(request.getProductId());
+        if (product.isEmpty()) {
+            return bucketMapper.mapProductResponse(bucket);
+        }
+        for (int i = 0; i < request.getCount(); i++) {
+            bucket.getProducts().add(product.get());
         }
         return bucketMapper.mapProductResponse(bucketRepository.save(bucket));
     }
 
     @Override
     public BucketResponse getBucketByUser(long userId) {
-        return bucketMapper.mapProductResponse(bucketRepository.findByUserId(userId));
+        Bucket bucket = bucketRepository.findByUserId(userId);
+        if (bucket == null) {
+            bucket = createBucketForUser(userId);
+        }
+        return bucketMapper.mapProductResponse(bucket);
     }
 
     @Override
@@ -61,7 +62,8 @@ public class BucketServiceImpl implements BucketService {
         return bucketMapper.mapProductResponse(bucketRepository.save(bucket));
     }
 
-    private Bucket createBucketForUser(long userId) {
+    @Override
+    public Bucket createBucketForUser(long userId) {
         Bucket bucket = new Bucket();
         bucket.setUserId(userId);
         bucket.setProducts(new ArrayList<>());

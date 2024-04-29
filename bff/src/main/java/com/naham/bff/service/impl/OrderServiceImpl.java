@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderResponse createOrder(CreateOrderRequest request, long userId) {
         Bucket bucket = bucketRepository.findByUserId(userId);
-        if (bucket == null || bucket.getId() != request.getBucketId()) {
+        if (bucket == null || !bucket.getId().equals(request.getBucketId())) {
             throw new IllegalArgumentException();
         }
         List<CardResponse> cards = cardService.getCardsByUserId(userId).getCards();

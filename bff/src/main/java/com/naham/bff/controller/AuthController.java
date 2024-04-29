@@ -3,6 +3,8 @@ package com.naham.bff.controller;
 import com.naham.bff.model.dto.request.AuthRequest;
 import com.naham.bff.model.dto.response.AuthResponse;
 import com.naham.bff.security.JwtTokenProvider;
+import com.naham.bff.security.Principal;
+import com.naham.bff.service.BucketService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -25,10 +27,12 @@ public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider tokenProvider;
+    private final BucketService bucketService;
 
-    public AuthController(AuthenticationManager authenticationManager, JwtTokenProvider tokenProvider) {
+    public AuthController(AuthenticationManager authenticationManager, JwtTokenProvider tokenProvider, BucketService bucketService) {
         this.authenticationManager = authenticationManager;
         this.tokenProvider = tokenProvider;
+        this.bucketService = bucketService;
     }
 
     @PostMapping(path = "/login")
@@ -40,6 +44,8 @@ public class AuthController {
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return ok(new AuthResponse(tokenProvider.generateToken(authentication)));
+        AuthResponse authResponse = new AuthResponse(tokenProvider.generateToken(authentication));
+        bucketService.createBucketForUser(((Principal) authentication.getPrincipal()).getId());
+        return ok(authResponse);
     }
 }
