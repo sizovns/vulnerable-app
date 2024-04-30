@@ -1,0 +1,33 @@
+<div class="container" *ngIf="productMap else basketIsEmpty">
+  <header class="jumbotron">
+    <div *ngFor="let item of productMap | keyvalue">
+      <h3>
+        <strong>{{ item.key.name }}</strong>
+      </h3>
+      <p>
+        <strong>id:</strong>
+        {{ item.key.id }}
+      </p>
+      <strong>Price:</strong>
+      <p>{{ item.key.price }}</p>
+      <img
+        [src]="item.key.imageUrl"
+        alt="{{ item.key.name }}"
+        style="width: 100px; height: auto"
+      /><br />
+      <p>
+        <strong>Quantity:</strong>
+        {{ item.value }}
+      </p>
+    </div>
+    <p>
+        <strong>Summary:</strong>
+        {{ sum }}
+    </p>
+    <button class="btn btn-primary btn-block" (click)="onButtonClicked()">
+      Clear Basket
+    </button>
+  </header>
+</div>
+
+<ng-template #basketIsEmpty> Basket is empty </ng-template>

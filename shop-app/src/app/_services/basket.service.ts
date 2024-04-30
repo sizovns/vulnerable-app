@@ -31,4 +31,8 @@ export class BasketService {
   getBusket(): Observable<any> {
     return this.http.get('/bff/buckets', httpOptions);
   }
+
+  clearBasket(): Observable<any> {
+    return this.http.delete('/bff/buckets', httpOptions);
+  }
 }

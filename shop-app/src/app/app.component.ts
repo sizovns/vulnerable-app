@@ -21,8 +21,6 @@ export class AppComponent {
 
     if (this.isLoggedIn) {
       const user = JSON.parse(this.storageService.getUser());
-      console.log(user)
-      console.log(user.roles)
       this.roles = user.roles;
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');

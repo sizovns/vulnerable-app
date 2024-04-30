@@ -41,7 +41,6 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    console.log("TET");
     return this.http.post(AUTH_API + 'signout', { }, httpOptions);
   }
 }

@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
 import { ProductComponent } from './product/product.component';
+import { BasketComponent } from './basket/basket.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ProductComponent } from './product/product.component';
     HomeComponent,
     ProfileComponent,
     ProductComponent,
+    BasketComponent,
   ],
   imports: [
     BrowserModule,

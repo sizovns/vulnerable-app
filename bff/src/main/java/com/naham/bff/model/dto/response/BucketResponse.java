@@ -1,5 +1,6 @@
 package com.naham.bff.model.dto.response;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,8 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,7 +17,8 @@ import java.util.Map;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonSerialize
 public class BucketResponse {
     String id;
-    Map<ProductResponse, Long> products = new HashMap<>();
+    List<ProductResponse> products;
 }
