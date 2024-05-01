@@ -13,7 +13,12 @@ import com.naham.api.service.PaymentCardService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -69,11 +74,14 @@ public class PaymentCardServiceImpl implements PaymentCardService {
     }
 
     @Override
-    public Collection<CardResponse> deleteCardById(long cardId) {
+    public Collection<CardResponse> deleteCardById(long cardId, Long userId) {
         try {
             List<PaymentCard> all = repository.findAll();
             boolean empty = all.stream().filter(card -> card.getId() == cardId).findFirst().isEmpty();
             if (!empty) {
+                UserInfo userInfo = userInfoRepository.getReferenceById(userId);
+                userInfo.setCards(userInfo.getCards().stream().filter(card -> card.getId() != cardId).collect(Collectors.toSet()));
+                userInfoRepository.saveAndFlush(userInfo);
                 repository.deleteById(cardId);
             }
             return all.stream().filter(card -> card.getId() != cardId).map(mapper::mapCardResponse).toList();

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Collection;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -29,11 +29,11 @@ public class CardController {
     }
 
     @GetMapping("/my")
-    public ResponseEntity<List<CardResponse>> getMyCards() {
+    public ResponseEntity<Collection<CardResponse>> getMyCards() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         long userId = ((Principal) authentication.getPrincipal()).getId();
 
-        List<CardResponse> cards = cardService.getCardsByUserId(userId).getCards();
+        Collection<CardResponse> cards = cardService.getCardsByUserId(userId).getCards();
         return ResponseEntity.status(HttpStatus.OK).body(cards);
     }
 

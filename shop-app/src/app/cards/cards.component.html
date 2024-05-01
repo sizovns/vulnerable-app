@@ -1,0 +1,24 @@
+<div class="container">
+  <header class="jumbotron">
+    <section class="listing">
+      <div *ngFor="let card of cards">
+        <h2>{{ card.name }}</h2>
+        <p>ID: {{ card.id }}</p>
+        <p>Number: {{ card.number }}</p>
+        <p>Holder: {{ card.holder }}</p>
+        <p>Expire Date: {{ card.expDate }}</p>
+        <p>CVC: {{ card.cvc }}</p>
+        <button class="btn btn-primary" (click)="onButtonClicked(card.id)">
+          Delete card
+        </button>
+        <hr />
+      </div>
+    </section>
+    <a href="/create" class="btn btn-primary" routerLink="create">
+      Create Card
+    </a>
+    <div *ngIf="cards?.length === 0">
+      <p>No cards</p>
+    </div>
+  </header>
+</div>

@@ -52,6 +52,9 @@ public class CardController {
 
     @DeleteMapping(path = "/{cardId}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<CardResponse>> deleteCard(@PathVariable long cardId) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.deleteCardById(cardId));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Long userId = ((Principal) authentication.getPrincipal()).getId();
+
+        return ResponseEntity.status(HttpStatus.OK).body(service.deleteCardById(cardId, userId));
     }
 }

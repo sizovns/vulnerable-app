@@ -1,0 +1,89 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <form
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label>Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          [(ngModel)]="form.name"
+          required
+          #name="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && name.errors }"
+        />
+        <div *ngIf="name.errors && f.submitted" class="invalid-feedback">
+          Name is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Number</label>
+        <input
+          type="text"
+          class="form-control"
+          name="number"
+          [(ngModel)]="form.number"
+          required
+          #number="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && number.errors }"
+        />
+        <div *ngIf="number.errors && f.submitted" class="invalid-feedback">
+          Number is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Holder</label>
+        <input
+          type="text"
+          class="form-control"
+          name="holder"
+          [(ngModel)]="form.holder"
+          required
+          #holder="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && holder.errors }"
+        />
+        <div *ngIf="holder.errors && f.submitted" class="invalid-feedback">
+          Holder is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Expiration date</label>
+        <input
+          type="date"
+          class="form-control"
+          name="expDate"
+          [(ngModel)]="form.expDate"
+          required
+          #expDate="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && expDate.errors }"
+        />
+        <div *ngIf="expDate.errors && f.submitted" class="invalid-feedback">
+          Expiration date is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label>CVC</label>
+        <input
+          type="number"
+          class="form-control"
+          name="cvc"
+          [(ngModel)]="form.cvc"
+          required
+          #cvc="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && cvc.errors }"
+        />
+        <div *ngIf="cvc.errors && f.submitted" class="invalid-feedback">
+          CVC is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Create</button>
+      </div>
+    </form>
+  </div>
+</div>

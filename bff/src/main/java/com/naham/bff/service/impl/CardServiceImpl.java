@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
 import java.nio.file.Paths;
+import java.util.Collection;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -26,11 +27,15 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public CardListResponse getCardsByUserId(long userId) {
-        return restClient.get().uri(uri + "/system/cards/" + userId)
-                .header("Authorization", "Bearer " + token)
-                .header("Content-Type", APPLICATION_JSON_VALUE)
-                .retrieve()
-                .body(CardListResponse.class);
+        CardListResponse response = new CardListResponse();
+        response.setCards(
+                restClient.get().uri(uri + "/system/cards/" + userId)
+                        .header("Authorization", "Bearer " + token)
+                        .header("Content-Type", APPLICATION_JSON_VALUE)
+                        .retrieve()
+                        .body(Collection.class)
+        );
+        return response;
     }
 
     @Override

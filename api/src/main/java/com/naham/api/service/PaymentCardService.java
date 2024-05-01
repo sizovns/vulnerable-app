@@ -13,5 +13,5 @@ public interface PaymentCardService {
 
     CardResponse updateCard(UpdateCardRequest request);
 
-    Collection<CardResponse> deleteCardById(long cardId);
+    Collection<CardResponse> deleteCardById(long cardId, Long userId);
 }

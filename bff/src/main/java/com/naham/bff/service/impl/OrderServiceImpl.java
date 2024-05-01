@@ -12,6 +12,7 @@ import com.naham.bff.service.CardService;
 import com.naham.bff.service.OrderService;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
         if (bucket == null || !bucket.getId().equals(request.getBucketId())) {
             throw new IllegalArgumentException();
         }
-        List<CardResponse> cards = cardService.getCardsByUserId(userId).getCards();
+        Collection<CardResponse> cards = cardService.getCardsByUserId(userId).getCards();
         if (cards == null || cards.isEmpty() || cards.stream().noneMatch(card -> card.getId() == request.getCardId())) {
             throw new IllegalArgumentException();
         }

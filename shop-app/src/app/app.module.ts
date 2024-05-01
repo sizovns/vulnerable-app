@@ -12,6 +12,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
 import { ProductComponent } from './product/product.component';
 import { BasketComponent } from './basket/basket.component';
+import { CardsComponent } from './cards/cards.component';
+import { CreateCardComponent } from './create.card/create.card.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { BasketComponent } from './basket/basket.component';
     ProfileComponent,
     ProductComponent,
     BasketComponent,
+    CardsComponent,
+    CreateCardComponent,
   ],
   imports: [
     BrowserModule,

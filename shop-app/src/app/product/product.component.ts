@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit {
   }
 
   onButtonClicked(): void {
-    next: this.basketService.getBusket().subscribe({
+    this.basketService.getBusket().subscribe({
       next: (baketResponse) => {
         console.log(baketResponse.products);
         this.productMap = new Map();
