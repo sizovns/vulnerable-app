@@ -1,16 +1,23 @@
 <div class="container">
   <header class="jumbotron">
     <section class="listing">
-      <div *ngFor="let product of content">
-        <h2>{{ product.name }}</h2>
-        <p>ID: {{ product.id }}</p>
+      <div *ngFor="let product of content" class="grid-container">
+        <strong>
+          {{ product.name }}
+        </strong>
+        <br/>
+        <img
+          [title]="product.name + ' details'"
+          [routerLink]="['/product', product.id]"
+          [src]="product.imageUrl"
+          alt="{{ product.name }}"
+          style="width: 100px; height: 100px"
+        />
         <p>Price: {{ product.price }}$</p>
-        <img [src]="product.imageUrl" alt="{{ product.name }}" style="width: 100px; height: auto;">
       </div>
     </section>
     <div *ngIf="content.length === 0">
       <p>No products</p>
     </div>
   </header>
-  </div>
-  
+</div>

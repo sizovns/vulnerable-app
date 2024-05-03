@@ -15,7 +15,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
 @RestController
-@RequestMapping("/admin")
+@RequestMapping(path = "/admin", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public class AdminController {
 
     private final UserInfoService userService;
@@ -25,7 +25,7 @@ public class AdminController {
     }
 
 
-    @PostMapping(path = "/users", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/users")
     public ResponseEntity<UserInfoResponse> createUser(@RequestBody CreateUserRequest request) {
         log.info("createUser request {}", request);
         try {
@@ -35,8 +35,13 @@ public class AdminController {
         }
     }
 
-    @GetMapping(path = "/users", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/users")
     public ResponseEntity<Collection<UserInfoResponse>> getUsers() {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUsers());
+    }
+
+    @DeleteMapping(path = "/users/{userId}")
+    public ResponseEntity<UserInfoResponse> disableUser(@PathVariable long userId) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.disableUser(userId));
     }
 }

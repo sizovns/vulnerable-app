@@ -14,6 +14,9 @@ import { ProductComponent } from './product/product.component';
 import { BasketComponent } from './basket/basket.component';
 import { CardsComponent } from './cards/cards.component';
 import { CreateCardComponent } from './create.card/create.card.component';
+import { CreateOrderComponent } from './create.order/create.order.component';
+import { OrderComponent } from './order/order.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { CreateCardComponent } from './create.card/create.card.component';
     BasketComponent,
     CardsComponent,
     CreateCardComponent,
+    CreateOrderComponent,
+    OrderComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

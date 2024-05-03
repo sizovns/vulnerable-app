@@ -66,7 +66,7 @@ public class WebSecurityConfig {
                                 .requestMatchers("/error").permitAll()
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/products/**").hasAnyAuthority(UserRole.ROLE_USER.getName())
-                                .requestMatchers("/buckets/**").hasAnyAuthority(UserRole.ROLE_USER.getName())
+                                .requestMatchers("/baskets/**").hasAnyAuthority(UserRole.ROLE_USER.getName())
                                 .requestMatchers("/orders/**").hasAnyAuthority(UserRole.ROLE_USER.getName())
                                 .requestMatchers("/cards/**").hasAnyAuthority(UserRole.ROLE_USER.getName())
                                 .anyRequest().authenticated()

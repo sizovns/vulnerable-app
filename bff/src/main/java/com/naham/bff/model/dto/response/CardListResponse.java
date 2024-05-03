@@ -6,12 +6,12 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CardListResponse {
-    Collection<CardResponse> cards;
+    List<CardResponse> cards;
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Bucket {
+public class Basket {
     @MongoId
     String id;
     long userId;

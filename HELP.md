@@ -1,4 +1,4 @@
-# Getting Started
+# Known vulnerabilities
 
 ### Tips for admin app
 
@@ -24,6 +24,7 @@
 
 
 ## TODO
-Test functionality (some methods fails)
-Create some FrontEnd for bff.
-Actuator on api should be closed under httpd.
+- Actuator on api should be closed under httpd.
+- Add README with story
+- Add build FE and deploy to httpd
+- Add prod docker-compose

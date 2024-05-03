@@ -16,4 +16,6 @@ public interface UserInfoService {
     UserSystemInfoResponse getUserSystemInfoById(long userId);
 
     UserSystemInfoResponse getUserSystemInfoByUsername(String username);
+
+    UserInfoResponse disableUser(long userId);
 }

@@ -89,4 +89,9 @@ public class PaymentCardServiceImpl implements PaymentCardService {
             throw new DaoException(e);
         }
     }
+
+    @Override
+    public CardResponse getCardById(Long cardId) {
+        return mapper.mapCardResponse(repository.getReferenceById(cardId));
+    }
 }

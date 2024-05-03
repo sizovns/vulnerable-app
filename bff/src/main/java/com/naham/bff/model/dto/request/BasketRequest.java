@@ -1,6 +1,6 @@
-package com.naham.bff.model.dto.response;
+package com.naham.bff.model.dto.request;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,16 +9,15 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-
 @Getter
 @Setter
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonSerialize
-public class BucketResponse {
-    String id;
-    List<ProductResponse> products;
+public class BasketRequest {
+    @Positive
+    Long productId;
+    @Positive
+    Integer count;
 }

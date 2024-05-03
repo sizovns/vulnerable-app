@@ -27,7 +27,7 @@ export interface UpdateCardRequest {
 export interface CardResponse {
   id: number;
   name: string;
-  number: number;
+  number: string;
   holder: string;
   expDate: Date;
   cvc: string;
@@ -53,9 +53,13 @@ export class CardService {
     return this.http.get('/bff/cards/my',  httpOptions);
   }
 
-  getCardById(id: number): Observable<any> {
-    return this.http.get(`/bff/cards?cardId=${id}`,  httpOptions);
+  getCardById(id: number): Observable<CardResponse> {
+    return this.http.get<CardResponse>(`/bff/cards?cardId=${id}`,  httpOptions);
   }
+
+/*   createOrder(createOrderRequest: CreateOrderRequest): Observable<OrderResponse> {
+    return this.http.post<OrderResponse>('/bff/orders', createOrderRequest, httpOptions);
+  } */
 
 
   createCard(createCardRequest: CreateCardRequest): Observable<any> {

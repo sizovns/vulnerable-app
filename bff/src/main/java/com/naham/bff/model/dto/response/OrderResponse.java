@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrderResponse {
-    long id;
-    CardResponse paymentCard;
+    String id;
+    long paymentCardId;
     List<ProductResponse> products = new ArrayList<>();
 }

@@ -7,18 +7,18 @@
         <p>Number: {{ card.number }}</p>
         <p>Holder: {{ card.holder }}</p>
         <p>Expire Date: {{ card.expDate }}</p>
-        <p>CVC: {{ card.cvc }}</p>
+        <p>CVC: ***</p>
         <button class="btn btn-primary" (click)="onButtonClicked(card.id)">
           Delete card
         </button>
         <hr />
       </div>
     </section>
-    <a href="/create" class="btn btn-primary" routerLink="create">
-      Create Card
-    </a>
     <div *ngIf="cards?.length === 0">
       <p>No cards</p>
     </div>
+    <a href="/create" class="btn btn-primary" routerLink="create">
+      Create Card
+    </a>
   </header>
 </div>

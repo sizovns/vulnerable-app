@@ -22,17 +22,17 @@ export class BasketService {
 
   addProductToBucket(productId: number, count: number): Observable<any> {
     return this.http.post(
-      '/bff/buckets',
+      '/bff/baskets',
       { productId, count },
       httpOptions
     );
   }
 
   getBusket(): Observable<any> {
-    return this.http.get('/bff/buckets', httpOptions);
+    return this.http.get('/bff/baskets', httpOptions);
   }
 
   clearBasket(): Observable<any> {
-    return this.http.delete('/bff/buckets', httpOptions);
+    return this.http.delete('/bff/baskets', httpOptions);
   }
 }

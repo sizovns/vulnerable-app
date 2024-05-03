@@ -1,10 +1,12 @@
 package com.naham.api.controller;
 
+import com.naham.api.model.dto.request.CreateUserRequest;
 import com.naham.api.model.dto.response.CardResponse;
 import com.naham.api.model.dto.response.UserInfoResponse;
 import com.naham.api.model.dto.response.UserSystemInfoResponse;
 import com.naham.api.service.PaymentCardService;
 import com.naham.api.service.UserInfoService;
+import jakarta.persistence.PersistenceException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,15 @@ public class SystemController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUserSystemInfoByUsername(username));
     }
 
+    @PostMapping(path = "/users")
+    public ResponseEntity<UserInfoResponse> createUser(@RequestBody CreateUserRequest request) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(request));
+        } catch (PersistenceException e) {
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
+        }
+    }
+
     @GetMapping(path = "/all/users")
     public ResponseEntity<Collection<UserInfoResponse>> getUsers() {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUsers());
@@ -45,5 +56,10 @@ public class SystemController {
     @GetMapping(path = "/cards/{userId}")
     public ResponseEntity<Collection<CardResponse>> getCards(@PathVariable Long userId) {
         return ResponseEntity.status(HttpStatus.OK).body(cardService.getCardsByUser(userId));
+    }
+
+    @GetMapping(path = "/card/{cardId}")
+    public ResponseEntity<CardResponse> getCard(@PathVariable Long cardId) {
+        return ResponseEntity.status(HttpStatus.OK).body(cardService.getCardById(cardId));
     }
 }

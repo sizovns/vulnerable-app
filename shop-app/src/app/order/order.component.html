@@ -1,0 +1,21 @@
+<div class="container">
+  <header class="jumbotron">
+    <div *ngFor="let orderForm of ordersForm">
+      <p>
+        <strong>Card Number:</strong>
+        {{ orderForm.cardNumber }}
+      </p>
+      <p>
+        <strong>Sum:</strong>
+        {{ orderForm.sum }}
+      </p>
+      <strong>Products:</strong>
+      <ul>
+        <li *ngFor="let product of orderForm.products">
+          {{ product }}
+        </li>
+      </ul>
+      <hr/>
+    </div>
+  </header>
+</div>

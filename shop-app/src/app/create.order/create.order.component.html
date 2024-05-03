@@ -1,0 +1,39 @@
+<div class="container">
+  <header class="jumbotron">
+    <div *ngIf="cards && cards.length > 0; else noCards">
+      <div *ngIf="productMap && productMap.size > 0; else noProducts">
+        <p>Please select your payment card:</p>
+        <div *ngFor="let card of cards">
+          <input
+            type="radio"
+            id="{{ card.id }}"
+            name="card"
+            value="{{ card.name }}"
+            (change)="onItemChange($event)"
+          />
+          <label for="{{ card.id }}">{{ card.name }}</label
+          ><br />
+        </div>
+        <hr />
+        <div *ngFor="let item of productMap | keyvalue">
+          <strong>{{ item.key.name }}</strong>
+          <p>
+            <strong>Quantity:</strong>
+            {{ item.value }}
+          </p>
+        </div>
+        <hr />
+        <p>
+          <strong>Summary:</strong>
+          {{ sum }}
+        </p>
+        <button class="btn btn-primary btn-block" (click)="onButtonClicked()">
+          Order
+        </button>
+      </div>
+    </div>
+
+    <ng-template #noCards> You have no cards for order </ng-template>
+    <ng-template #noProducts> You have no products for order </ng-template>
+  </header>
+</div>

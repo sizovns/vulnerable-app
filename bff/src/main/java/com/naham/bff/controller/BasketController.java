@@ -1,9 +1,9 @@
 package com.naham.bff.controller;
 
-import com.naham.bff.model.dto.request.BucketRequest;
-import com.naham.bff.model.dto.response.BucketResponse;
+import com.naham.bff.model.dto.request.BasketRequest;
+import com.naham.bff.model.dto.response.BasketResponse;
 import com.naham.bff.security.Principal;
-import com.naham.bff.service.BucketService;
+import com.naham.bff.service.BasketService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,37 +21,37 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
 @RestController
-@RequestMapping(path = "/buckets", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-public class BucketController {
+@RequestMapping(path = "/baskets", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+public class BasketController {
 
 
-    private final BucketService bucketService;
+    private final BasketService basketService;
 
-    public BucketController(BucketService bucketService) {
-        this.bucketService = bucketService;
+    public BasketController(BasketService basketService) {
+        this.basketService = basketService;
     }
 
     @PostMapping
-    public ResponseEntity<BucketResponse> addProductToBucket(@Valid @RequestBody BucketRequest request) {
+    public ResponseEntity<BasketResponse> addProductToBasket(@Valid @RequestBody BasketRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         long userId = ((Principal) authentication.getPrincipal()).getId();
 
-        return ResponseEntity.status(HttpStatus.OK).body(bucketService.addProductToBucket(request, userId));
+        return ResponseEntity.status(HttpStatus.OK).body(basketService.addProductToBasket(request, userId));
     }
 
     @GetMapping
-    public ResponseEntity<BucketResponse> getBucket() {
+    public ResponseEntity<BasketResponse> getBasket() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         long userId = ((Principal) authentication.getPrincipal()).getId();
 
-        return ResponseEntity.status(HttpStatus.OK).body(bucketService.getBucketByUser(userId));
+        return ResponseEntity.status(HttpStatus.OK).body(basketService.getBasketByUser(userId));
     }
 
     @DeleteMapping
-    public ResponseEntity<BucketResponse> clearBucket() {
+    public ResponseEntity<BasketResponse> clearBasket() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         long userId = ((Principal) authentication.getPrincipal()).getId();
 
-        return ResponseEntity.status(HttpStatus.OK).body(bucketService.clearBucketByUser(userId));
+        return ResponseEntity.status(HttpStatus.OK).body(basketService.clearBasketByUser(userId));
     }
 }

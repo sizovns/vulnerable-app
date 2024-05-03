@@ -4,7 +4,6 @@ import com.naham.bff.mapper.ProductMapper;
 import com.naham.bff.model.dto.response.ProductResponse;
 import com.naham.bff.repository.ProductRepository;
 import com.naham.bff.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

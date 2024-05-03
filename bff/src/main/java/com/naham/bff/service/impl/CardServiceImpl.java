@@ -4,11 +4,11 @@ import com.naham.bff.model.dto.response.CardListResponse;
 import com.naham.bff.service.CardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
 import java.nio.file.Paths;
-import java.util.Collection;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -33,14 +33,14 @@ public class CardServiceImpl implements CardService {
                         .header("Authorization", "Bearer " + token)
                         .header("Content-Type", APPLICATION_JSON_VALUE)
                         .retrieve()
-                        .body(Collection.class)
+                        .body(new ParameterizedTypeReference<>() {})
         );
         return response;
     }
 
     @Override
     public String getCardById(String cardId) {
-        String path = uri + Paths.get("/system/cards/", cardId).normalize();
+        String path = uri + Paths.get("/system/card/", cardId).normalize();
         log.info("Send request to uri {}", path);
         return restClient.get().uri(path)
                 .header("Authorization", "Bearer " + token)

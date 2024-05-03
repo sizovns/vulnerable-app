@@ -74,4 +74,11 @@ public class UserInfoServiceImpl implements UserInfoService {
         UserInfo userInfo = repository.findByUsername(username).orElseThrow(IllegalArgumentException::new);
         return mapper.mapUserSystemInfoResponse(userInfo);
     }
+
+    @Override
+    public UserInfoResponse disableUser(long userId) {
+        UserInfo userInfo = repository.findById(userId).orElseThrow(IllegalArgumentException::new);
+        userInfo.setEnabled(false);
+        return mapper.mapUserInfoResponse(repository.save(userInfo));
+    }
 }
