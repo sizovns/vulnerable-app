@@ -1,4 +1,4 @@
-<div class="container" *ngIf="productMap else basketIsEmpty">
+<div class="container" *ngIf="productMap; else basketIsEmpty">
   <header class="jumbotron">
     <div *ngFor="let item of productMap | keyvalue">
       <h3>
@@ -21,14 +21,18 @@
       </p>
     </div>
     <p>
-        <strong>Summary:</strong>
-        {{ sum }}
+      <strong>Summary:</strong>
+      {{ sum }}
     </p>
-    <button class="btn btn-primary btn-block" (click)="onButtonClicked()">
+    <button class="btn btn-primary" (click)="onButtonClicked()">
       Clear Basket
     </button>
-    <button class="btn btn-primary btn-block" (click)="onCreateOrder()">
-        Order
+    <button
+      class="btn btn-primary"
+      style="margin: 10px"
+      (click)="onCreateOrder()"
+    >
+      Order
     </button>
   </header>
 </div>

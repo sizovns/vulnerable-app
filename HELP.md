@@ -19,12 +19,9 @@
 
 ### Tips for bff app
 
-* IDOR on orders `localhost:8085/bff/orders/{orderId}`
-* Path traversal for get all users from bff to api - `localhost:8085/bff/cards?cardId=../../../../system/all/users` or `localhost:8085/bff/cards?cardId=../../../../actuator`
+* IDOR on orders `localhost/bff/orders/{orderId}`
+* Path traversal for get all users from bff to api - `localhost/bff/cards?cardId=../../../../system/all/users` or `localhost/bff/cards?cardId=../../../../actuator`
 
 
 ## TODO
-- Actuator on api should be closed under httpd.
 - Add README with story
-- Add build FE and deploy to httpd
-- Add prod docker-compose

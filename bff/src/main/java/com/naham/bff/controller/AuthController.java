@@ -2,7 +2,6 @@ package com.naham.bff.controller;
 
 import com.naham.bff.model.dto.request.AuthRequest;
 import com.naham.bff.model.dto.response.AuthResponse;
-import com.naham.bff.model.dto.response.UserSystemInfoResponse;
 import com.naham.bff.security.JwtTokenProvider;
 import com.naham.bff.security.Principal;
 import com.naham.bff.service.BasketService;
@@ -45,11 +44,10 @@ public class AuthController {
     }
 
     @PostMapping(path = "/register")
-    public ResponseEntity<AuthResponse> register(@Valid @RequestBody AuthRequest authRequest) {
-        UserSystemInfoResponse user =
-                userService.createUser(authRequest).orElseThrow(() ->
-                        new IllegalArgumentException("User with username " + authRequest.getUsername() + " not created"));
-        return authUser(user.getUsername(), user.getPassword());
+    public ResponseEntity<Boolean> register(@Valid @RequestBody AuthRequest authRequest) {
+        userService.createUser(authRequest).orElseThrow(() ->
+                new IllegalArgumentException("User with username " + authRequest.getUsername() + " not created"));
+        return ok(true);
     }
 
     private ResponseEntity<AuthResponse> authUser(String username, String password) {

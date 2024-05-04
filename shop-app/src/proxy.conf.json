@@ -1,10 +1,10 @@
 {
   "/bff": {
-    "target": "http://localhost:8085",
+    "target": "http://bff-boot-app:8085",
     "secure": false
   },
   "/api": {
-    "target": "http://localhost:8080",
+    "target": "http://demo-tomcat-app:8080",
     "secure": false
   }
 }

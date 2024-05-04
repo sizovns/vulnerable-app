@@ -20,9 +20,8 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private cardService: CardService // private basketService: BasketService,
-  ) // private productService: ProductService,
-  // private router: Router
+    private cardService: CardService 
+  )
   {}
 
   ngOnInit(): void {

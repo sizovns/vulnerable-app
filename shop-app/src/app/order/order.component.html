@@ -1,21 +1,24 @@
 <div class="container">
   <header class="jumbotron">
-    <div *ngFor="let orderForm of ordersForm">
-      <p>
-        <strong>Card Number:</strong>
-        {{ orderForm.cardNumber }}
-      </p>
-      <p>
-        <strong>Sum:</strong>
-        {{ orderForm.sum }}
-      </p>
-      <strong>Products:</strong>
-      <ul>
-        <li *ngFor="let product of orderForm.products">
-          {{ product }}
-        </li>
-      </ul>
-      <hr/>
+    <div *ngIf=" ordersForm.length > 0; else noOrders">
+      <div *ngFor="let orderForm of ordersForm">
+        <p>
+          <strong>Card Number:</strong>
+          {{ orderForm.cardNumber }}
+        </p>
+        <p>
+          <strong>Sum:</strong>
+          {{ orderForm.sum }}
+        </p>
+        <strong>Products:</strong>
+        <ul>
+          <li *ngFor="let product of orderForm.products">
+            {{ product }}
+          </li>
+        </ul>
+        <hr />
+      </div>
     </div>
+    <ng-template #noOrders> No orders</ng-template>
   </header>
 </div>

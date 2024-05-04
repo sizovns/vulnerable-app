@@ -37,6 +37,8 @@ RUN useradd -d ${APP_DIR} -s /sbin/nologin ${APP_USER}
 COPY --from=build /app/${APP_NAME}/target/${APP_NAME}.jar ${APP_DIR}/${APP_NAME}.jar
 RUN chown -R ${APP_USER}:${APP_GROUP} ${APP_DIR}
 
+EXPOSE 8085
+
 USER ${APP_USER}
 WORKDIR ${APP_DIR}/
 

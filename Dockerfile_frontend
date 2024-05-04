@@ -1,0 +1,17 @@
+FROM node:alpine as build
+WORKDIR /usr/src/app
+# COPY shop-app/src /usr/src/app
+# COPY shop-app/*.json /usr/src/app
+
+COPY shop-app/package.json .
+COPY shop-app/package-lock.json .
+RUN npm install -g @angular/cli@16
+RUN npm ci
+COPY shop-app/ .
+RUN npm run build
+
+
+FROM httpd:2.4.49
+
+COPY --from=build /usr/src/app/dist/shop-app/* /var/www/html/.
+COPY ./httpd/.htaccess /var/www/html/.htaccess
